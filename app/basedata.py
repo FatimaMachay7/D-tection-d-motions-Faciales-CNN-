@@ -9,3 +9,10 @@ URL_DATABASE='postgresql://postgres:12345678@localhost/emotion_db'
 engine =create_engine(URL_DATABASE)
 sessionlocal=sessionmaker(autocommit=False, autoflush= False, bind=engine)    #  Flush = vider 
 Base = declarative_base()
+def get_db():
+    db=sessionlocal()
+    try: 
+        yield db
+    finally:
+        db.close()
+

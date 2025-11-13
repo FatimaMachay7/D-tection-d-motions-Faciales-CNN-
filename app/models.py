@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Float
-from basedata import Base
+from basedata import Base, engine
 from datetime import datetime
 
 class Emotionprediction(Base) :
@@ -8,3 +8,5 @@ class Emotionprediction(Base) :
     emotion=Column(String, index=True)
     confidence= Column(Float, nullable=False)    # non, elle ne peut pas être vide.
     data_created =Column(DateTime, default= datetime.utcnow)
+Base.metadata.create_all(bind=engine)
+
