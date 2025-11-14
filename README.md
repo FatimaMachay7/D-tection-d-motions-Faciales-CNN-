@@ -72,9 +72,10 @@ Deux endpoints principaux :
  
 
 **Table : predictions**
+
 <div align="center">
 
-| Colonne       | Type    | Description                  |
+| __Colonne__   | __Type__| __Description__              |
 |---------------|---------|------------------------------|
 | id            | INT     | Clé primaire                 |
 | filename      | TEXT    | Nom de l’image               |
@@ -96,8 +97,9 @@ Deux endpoints principaux :
 
  ### Technologies utilisées
 
+<div align="center">
 
-| Technologie         | Rôle              |
+| __Technologie__     | __Rôle__          |
 |---------------------|-------------------|
 | Python 3.11         | Langage principal |
 | TensorFlow / Keras  | Modèle CNN        |
@@ -108,12 +110,15 @@ Deux endpoints principaux :
 | PyTest              | Tests             |
 | Uvicorn             | Serveur ASGI      |
 
+</div>
+
 ### Base de données PostgreSQL
 
 **Table : predictions**
 
+<div align="center">
 
-| Colonne       | Type      |
+| __Colonne__    | __Type__ |
 |---------------|-----------|
 | id            | INT       |
 | filename      | TEXT      |
@@ -121,7 +126,7 @@ Deux endpoints principaux :
 | confidence    | FLOAT     |
 | date_created  | DATETIME  |
 
-
+</div>
 
 ## Contribuer :
 
