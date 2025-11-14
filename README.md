@@ -1,4 +1,4 @@
-# 🎭 Détection d’Émotions Faciales  
+# Détection d’émotions faciales  
 ### CNN + OpenCV + FastAPI + PostgreSQL  
 
 ### *Auteur :* __MACHAY Fatima__
@@ -29,6 +29,8 @@ Développer un prototype d’API IA capable de détecter automatiquement un visa
    6. [Tests](#tests)
 5. [Technologies utilisées](#technologies-utilisées)
 6. [Base de données PostgreSQL](#base-de-données-postgresql)
+6. [Contribuer](#contribuer)
+7. [Contact](#contact)
 
 ## Description du projet
 
@@ -104,11 +106,27 @@ Deux endpoints principaux :
 | Uvicorn             | Serveur ASGI      |
 
 ### Base de données PostgreSQL
-Table predictions :
-Colonne	Type
-id	INT
-filename TEXT
-emotion	TEXT
-confidence	FLOAT
-data_created	datetime
 
+**Table : predictions**
+
+| Colonne       | Type      |
+|---------------|-----------|
+| id            | INT       |
+| filename      | TEXT      |
+| emotion       | TEXT      |
+| confidence    | FLOAT     |
+| date_created  | DATETIME  |
+
+## Contribuer :
+
+Les contributions sont les bienvenues ! Si vous trouvez un bug ou souhaitez améliorer le projet, n’hésitez pas à forker le dépôt et soumettre une demande de pull.
+Pour contribuer :
+- Forkez le dépôt.
+- Créez une nouvelle branche.
+- Effectuez vos modifications.
+- Soumettez une demande de pull.
+
+## Contact :
+
+_N'hésitez pas à me contacter en cas de problème ou si vous avez des questions.
+Email : [fatimamachay5@gmail.com]_
