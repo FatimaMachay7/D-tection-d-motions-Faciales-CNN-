@@ -1,13 +1,16 @@
+from typing import Optional
 from pydantic import BaseModel
 from datetime import datetime
 
 class PredictionCreate(BaseModel):
     emotion : str
     confidence :float
+
 class PredictionRead(BaseModel):
-    id:int
+    filename: Optional[str]
     emotion: str
-    confidence:float
-    data_created: datetime
-class configuration:
-    orm_mode=True
+    confidence: float
+    data_created: datetime | None = None
+
+    class Config:
+        orm_mode = True

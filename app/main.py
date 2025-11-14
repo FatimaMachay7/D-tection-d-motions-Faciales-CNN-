@@ -19,15 +19,13 @@ def get_lead():
 UPLOAD_DIRECTORY="temp"
 os.makedirs(UPLOAD_DIRECTORY,exist_ok=True)
 
-face_cascade = cv2.CascadeClassifier(
-    cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
-)
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 model = tf.keras.models.load_model("Model_CNN_faces.keras")
 
 emotion_labels = ['angry', 'disgusted', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
 
-@app.post ("/prediction_emotion", response_model=PredictionRead)
+@app.post ("/prediction_emotion")
 async def prediction_emotion(file: UploadFile=File(...),db:Session= Depends(get_db)):
 # Lecture du fichier image envoyé par le client
     contents=await file.read()
@@ -51,23 +49,51 @@ async def prediction_emotion(file: UploadFile=File(...),db:Session= Depends(get_
         "emotion": emotion,
         "confidence": confidence
     }
+from fastapi import HTTPException
+
+@app.post("/prediction_emotions_faces", response_model=PredictionRead)
+async def prediction_emotion(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+
+    try:
+        # Lecture du fichier image
+        contents = await file.read()
+        nparr = np.frombuffer(contents, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+        # Prédiction
+        confidence, emotion = prediction_emotion_picture(img)
+
+        if emotion is None:
+            raise HTTPException(status_code=400, detail="Aucun visage détecté.")
+
+        # Enregistrement dans la base
+        record = Emotionprediction(
+            filename=file.filename,
+            emotion=emotion,
+            confidence=confidence
+        )
+
+        db.add(record)
+        db.commit()
+
+        return record
+
+    except Exception as e:
+        db.rollback()   # ⛔ IMPORTANT : annule la transaction si erreur
+        raise HTTPException(
+            status_code=500,
+            detail=f"Erreur lors de l'enregistrement dans la base : {str(e)}"
+        )
+
 # Endpoint : historique des prédictions
-# =============================
-@app.get("/history/")
+
+@app.get("/history/", response_model=list[PredictionRead])
 def get_history(db: Session = Depends(get_db)):
     """
     Retourne l'historique des prédictions stockées en base.
     """
     records = db.query(Emotionprediction).all()
-    return [
-        {"filename": r.filename, "emotion": r.emotion, "confidence": r.confidence}
-        for r in records
-    ]
-
-
-# =============================
-# ▶️ Lancer le serveur (facultatif si tu utilises uvicorn en ligne de commande)
-# =============================
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+    return records
