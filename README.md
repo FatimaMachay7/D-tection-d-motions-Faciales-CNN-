@@ -27,10 +27,11 @@ Développer un prototype d’API IA capable de détecter automatiquement un visa
    4. [Base PostgreSQL](#base-postgresql)
    5. [Script OpenCV autonome](#script-opencv-autonome)
    6. [Tests](#tests)
-5. [Technologies utilisées](#technologies-utilisées)
-6. [Base de données PostgreSQL](#base-de-données-postgresql)
-6. [Contribuer](#contribuer)
-7. [Contact](#contact)
+5. [Intégration continue avec GitHub Actions](#Intégration-continue-avec-GitHub-Actions)
+6. [Technologies utilisées](#technologies-utilisées)
+7. [Base de données PostgreSQL](#base-de-données-postgresql)
+8. [Contribuer](#contribuer)
+9. [Contact](#contact)
 
 ## Description du projet
 
@@ -93,6 +94,8 @@ Deux endpoints principaux :
 - Test du JSON de réponse  
 - Tests exécutés automatiquement à chaque commit
 
+#### Intégration continue avec GitHub Actions
+Les tests sont exécutés automatiquement à chaque push ou pull request sur la branche main grâce à l’intégration continue via GitHub Actions. 
 ---
 
  ### Technologies utilisées
