@@ -70,7 +70,9 @@ Deux endpoints principaux :
 
 ### Base PostgreSQL  
  
+
 **Table : predictions**
+<div align="center">
 
 | Colonne       | Type    | Description                  |
 |---------------|---------|------------------------------|
@@ -80,6 +82,7 @@ Deux endpoints principaux :
 | confidence    | FLOAT   | Score entre 0 et 1           |
 | date_created  | DATETIME| Timestamp de l’entrée        |
 
+</div>
 
 ###  Script OpenCV autonome  
 `utiles.py` → charge le modèle, détecte, prédit et annote l’image
@@ -109,7 +112,6 @@ Deux endpoints principaux :
 
 **Table : predictions**
 
-<div align="center">
 
 | Colonne       | Type      |
 |---------------|-----------|
@@ -119,7 +121,7 @@ Deux endpoints principaux :
 | confidence    | FLOAT     |
 | date_created  | DATETIME  |
 
-</div>
+
 
 ## Contribuer :
 
