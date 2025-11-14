@@ -109,6 +109,8 @@ Deux endpoints principaux :
 
 **Table : predictions**
 
+<div align="center">
+
 | Colonne       | Type      |
 |---------------|-----------|
 | id            | INT       |
@@ -116,6 +118,8 @@ Deux endpoints principaux :
 | emotion       | TEXT      |
 | confidence    | FLOAT     |
 | date_created  | DATETIME  |
+
+</div>
 
 ## Contribuer :
 
